@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    restart: always
+    environment:
+      FLASK_ENV: development
+    entrypoint: ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
+
+
+#  postgres:
+#    image: postgres:13.2
+#    restart: always
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - pokemon_viewer_db_data:/var/lib/postgresql/data
+#    env_file:
+#      - .env.local
+#
+#volumes:
+#    pokemon_viewer_db_data:
+#    pokemon_viewer_redis_data:
