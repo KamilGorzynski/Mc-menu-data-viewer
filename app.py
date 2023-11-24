@@ -1,15 +1,17 @@
 from flask import Flask
 from blueprints.healthcheck.views import bp as healthcheck
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    # blueprints
-    app.register_blueprint(healthcheck, url_prefix='/healthcheck')
+# provide config
+app.config.from_object("config.Config")
 
-    return app
+# blueprints
+app.register_blueprint(healthcheck, url_prefix="/healthcheck")
 
+db = SQLAlchemy(app)
 
-
-
+migrate = Migrate(app, db)
