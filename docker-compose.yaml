@@ -8,11 +8,13 @@ services:
       - "5000:5000"
     restart: always
     stdin_open: true
+    volumes:
+      - '.:/src'
     tty: true
     env_file:
       - .env.local
-#    entrypoint: ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
-    command: gunicorn --bind 0.0.0.0:5000 --timeout 480 --access-logfile '-' wsgi:application --preload
+    entrypoint: ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
+#    command: gunicorn --bind 0.0.0.0:5000 --timeout 480 --access-logfile '-' wsgi:application --preload
   db:
     image: postgres:13.2
     restart: always

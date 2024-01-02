@@ -16,7 +16,16 @@ I. Clone the project:
 https://github.com/KamilGorzynski/Mc-menu-data-viewer.git
 ```
 
-II. Run app:
+II. Create .env.local file and fill up with example variables:
+```
+FLASK_ENV=development
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=mc_menu_db
+DATABASE_URL=postgresql://postgres:postgres@db:5432/mc_menu_db
+```
+
+III. Run app:
 ```
 make run
 ```
@@ -28,3 +37,8 @@ make db_migrate NAME='my_migration_name'
 make db_upgrade
 ```
 
+## Code Format
+Run black with default settings:
+```
+make format
+```

@@ -11,3 +11,4 @@ requests==2.31.0
 SQLAlchemy==2.0.23
 Werkzeug==2.3.6
 flask-script==2.0.5
+pandas==2.0.2

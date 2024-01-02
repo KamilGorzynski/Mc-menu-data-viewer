@@ -16,16 +16,14 @@ FROM base
 
 COPY --from=builder /install /usr/local
 
-COPY /blueprints /blueprints
-COPY /wsgi.py /wsgi.py
-COPY /app.py /app.py
-COPY /config.py /config.py
-COPY /alembic /alembic
-COPY /alembic.ini /alembic.ini
+RUN mkdir /src
 
-WORKDIR /
+COPY . /src
 
-ENV FLASK_APP=app.py
+WORKDIR /src
+
+ENV PYTHONBUFFERED 1
+ENV FLASK_APP=/src/app/app.py
 ENV FLASK_DEBUG=true
 ENV FLASK_ENV=development
 
