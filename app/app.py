@@ -5,6 +5,7 @@ from app.blueprints.menu_items.models import db
 from flask_migrate import Migrate
 from flask import json
 from werkzeug.exceptions import BadRequest
+from flask_marshmallow import Marshmallow
 
 
 app = Flask(__name__)
@@ -35,3 +36,5 @@ app.register_blueprint(menu_items, url_prefix="/menu_items")
 # db
 db.init_app(app)
 Migrate(app, db)
+
+ma = Marshmallow(app)
