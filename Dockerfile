@@ -23,7 +23,7 @@ COPY . /src
 WORKDIR /src
 
 ENV PYTHONBUFFERED 1
-ENV FLASK_APP=/src/app/app.py
+ENV FLASK_APP=/src/app/wsgi.py
 ENV FLASK_DEBUG=true
 ENV FLASK_ENV=development
 

@@ -37,8 +37,19 @@ make db_migrate NAME='my_migration_name'
 make db_upgrade
 ```
 
+## Run unit tests
+To create db for unit tests (run once):
+```
+make db_test
+```
+
+Run unit tests:
+```
+make test
+```
+
 ## Code Format
-Run black with default settings:
+Run black with default settings (not ready yet):
 ```
 make format
 ```

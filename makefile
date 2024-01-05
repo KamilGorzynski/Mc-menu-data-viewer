@@ -4,8 +4,14 @@ run:
 down:
 	docker-compose down
 
-format:
-	black .
+shell:
+	docker-compose exec app bash
+
+test:
+	docker-compose exec -T app pytest
+
+db_test:
+	docker-compose exec -T db psql -U postgres -c "CREATE DATABASE test_db;"
 
 db_init:
 	alembic init alembic
