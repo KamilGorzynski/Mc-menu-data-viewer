@@ -1,5 +1,12 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+from marshmallow import fields
 from app.blueprints.menu_items.models import MenuItem, ItemCategory
+
+
+class ItemCategorySchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = ItemCategory
+        load_instance = True
 
 
 class MenuItemSchema(SQLAlchemyAutoSchema):
@@ -7,8 +14,9 @@ class MenuItemSchema(SQLAlchemyAutoSchema):
         model = MenuItem
         load_instance = True
 
+    category = fields.Nested(ItemCategorySchema)
 
-class ItemCategorySchema(SQLAlchemyAutoSchema):
-    class Meta:
-        model = ItemCategory
-        load_instance = True
+
+
+
+
