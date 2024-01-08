@@ -59,3 +59,11 @@ def test_get_menu_items(app, client):
                 }
             ]
         }
+
+
+def test_light_menu_items_with_pagination(app, client):
+    with app.app_context():
+        MenuItemFactory.create_batch(10)
+        response = client.get('/menu_items/light_menu_items?per_page=5')
+        assert response.status_code == 200
+        assert len(response.json.get("light_menu_items")) == 5

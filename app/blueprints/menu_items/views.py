@@ -1,9 +1,9 @@
 import pandas as pd
 from flask import Blueprint, Response, request, jsonify
-from app.blueprints.menu_items.models import MenuItem, ItemCategory
+from app.blueprints.menu_items.models import MenuItem, ItemCategory, db
 from .helpers import create_menu_items
 from werkzeug.exceptions import BadRequest
-from app.blueprints.menu_items.serializers import MenuItemSchema, ItemCategorySchema
+from app.blueprints.menu_items.serializers import MenuItemSchema, ItemCategorySchema, LightMenuItemSchema
 
 bp = Blueprint("menu_items", __name__)
 
@@ -21,6 +21,14 @@ def import_menu_items():
 def get_all_menu_items():
     return jsonify(
         {"menu_items": MenuItemSchema(many=True).dump(MenuItem.query.all())}
+    )
+
+
+@bp.route("/light_menu_items", methods=["GET"])
+def get_light_menu_items():
+    queryset = db.paginate(db.select(MenuItem))
+    return jsonify(
+        {"light_menu_items": LightMenuItemSchema(many=True).dump(queryset)}
     )
 
 

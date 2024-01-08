@@ -17,6 +17,7 @@ class MenuItemSchema(SQLAlchemyAutoSchema):
     category = fields.Nested(ItemCategorySchema)
 
 
-
-
-
+class LightMenuItemSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = MenuItem
+        fields = ("id", "name")
